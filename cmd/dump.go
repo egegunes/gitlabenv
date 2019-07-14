@@ -25,17 +25,17 @@ var dumpCmd = &cobra.Command{
 		pid := args[0]
 		variables, _, err := git.ProjectVariables.ListVariables(pid, nil)
 		if err != nil {
-			fmt.Printf("couldn't get project variables: %v\n", err)
+			fmt.Fprintf(os.Stderr, "couldn't get project variables: %v\n", err)
 			os.Exit(1)
 		}
 
 		dump, err := json.MarshalIndent(variables, "", "  ")
 		if err != nil {
-			fmt.Printf("couldn't dump project variables: %v", err)
+			fmt.Fprintf(os.Stderr, "couldn't dump project variables: %v", err)
 			os.Exit(1)
 		}
 
-		fmt.Println(string(dump))
+		fmt.Fprintln(os.Stdout, string(dump))
 
 		os.Exit(0)
 	},

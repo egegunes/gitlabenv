@@ -25,12 +25,12 @@ var listCmd = &cobra.Command{
 		variables, _, err := git.ProjectVariables.ListVariables(pid, nil)
 
 		if err != nil {
-			fmt.Printf("couldn't get project variables: %v\n", err)
+			fmt.Fprintf(os.Stderr, "couldn't get project variables: %v\n", err)
 			os.Exit(1)
 		}
 
 		for _, variable := range variables {
-			fmt.Printf("%s=%s\n", variable.Key, variable.Value)
+			fmt.Fprintf(os.Stdout, "%s=%s\n", variable.Key, variable.Value)
 		}
 
 		os.Exit(0)
