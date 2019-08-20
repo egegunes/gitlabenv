@@ -24,12 +24,14 @@ var addCmd = &cobra.Command{
 		pid := args[0]
 		key := args[1]
 		value := args[2]
+		masked := false
 		protected := false
 		scope := "*"
 
-		variableOptions := &gitlab.CreateVariableOptions{
+		variableOptions := &gitlab.CreateProjectVariableOptions{
 			Key:              &key,
 			Value:            &value,
+			Masked:           &masked,
 			Protected:        &protected,
 			EnvironmentScope: &scope,
 		}

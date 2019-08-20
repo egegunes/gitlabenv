@@ -24,11 +24,13 @@ var updateCmd = &cobra.Command{
 		pid := args[0]
 		key := args[1]
 		value := args[2]
+		masked := false
 		protected := false
 		scope := "*"
 
-		variableOptions := &gitlab.UpdateVariableOptions{
+		variableOptions := &gitlab.UpdateProjectVariableOptions{
 			Value:            &value,
+			Masked:           &masked,
 			Protected:        &protected,
 			EnvironmentScope: &scope,
 		}

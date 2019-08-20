@@ -43,10 +43,11 @@ var loadCmd = &cobra.Command{
 			_, _, err := git.ProjectVariables.UpdateVariable(
 				pid,
 				variable.Key,
-				&gitlab.UpdateVariableOptions{
-					&variable.Value,
-					&variable.Protected,
-					&variable.EnvironmentScope,
+				&gitlab.UpdateProjectVariableOptions{
+					Value:            &variable.Value,
+					Masked:           &variable.Masked,
+					Protected:        &variable.Protected,
+					EnvironmentScope: &variable.EnvironmentScope,
 				},
 				nil,
 			)
@@ -55,11 +56,12 @@ var loadCmd = &cobra.Command{
 				fmt.Fprintf(os.Stderr, "\n%s not found, creating... ", variable.Key)
 				_, _, err := git.ProjectVariables.CreateVariable(
 					pid,
-					&gitlab.CreateVariableOptions{
-						&variable.Key,
-						&variable.Value,
-						&variable.Protected,
-						&variable.EnvironmentScope,
+					&gitlab.CreateProjectVariableOptions{
+						Key:              &variable.Key,
+						Value:            &variable.Value,
+						Masked:           &variable.Masked,
+						Protected:        &variable.Protected,
+						EnvironmentScope: &variable.EnvironmentScope,
 					},
 					nil,
 				)
