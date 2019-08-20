@@ -30,8 +30,26 @@ $ gitlabenv list egegunes/gitlabenv
 $ gitlabenv dump egegunes/gitlabenv > gitlabenv.json
 ```
 
-### Load variables
+### Load multiple variables
 
 ```
 $ gitlabenv load egegunes/gitlabenv gitlabenv.json
+```
+
+### Add variable
+
+```
+$ gitlabenv add egegunes/gitlabenv GO_VERSION 1.12
+```
+
+### Update variable
+
+```
+$ gitlabenv update egegunes/gitlabenv GO_VERSION 1.13
+```
+
+### Delete variable
+
+```
+$ gitlabenv delete egegunes/gitlabenv GO_VERSION
 ```
