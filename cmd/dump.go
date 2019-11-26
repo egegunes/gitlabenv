@@ -23,7 +23,8 @@ var dumpCmd = &cobra.Command{
 		git := gitlab.NewClient(nil, viper.GetString("token"))
 
 		pid := args[0]
-		variables, _, err := git.ProjectVariables.ListVariables(pid, nil)
+		opts := &gitlab.ListProjectVariablesOptions{PerPage: 100, Page: 1}
+		variables, _, err := git.ProjectVariables.ListVariables(pid, opts)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "couldn't get project variables: %v\n", err)
 			os.Exit(1)
